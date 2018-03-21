@@ -69,7 +69,7 @@ h1 {
 
 .deck .card.show {
     transform: rotateY(-180deg);
-    background: #1aace2;
+    background: #1599ca;
     cursor: default;
     font-size: 33px;
 }
@@ -83,7 +83,7 @@ h1 {
 
 .deck .card.wrong{
 	cursor: default;
-	background: #e24a4a;
+	background-color: #e24a4a;
 }
 
 /*

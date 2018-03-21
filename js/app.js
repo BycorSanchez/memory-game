@@ -53,8 +53,12 @@
 		card.classList.add("match");
 	}
 
+	function wrong(card){
+		card.classList.add("wrong");
+	}
+
 	function flipDown(card){
-		card.classList.remove("show", "match");
+		card.classList.remove("show", "match", "wrong");
 	}
 
 	function flipUp(card){
@@ -93,8 +97,10 @@
 	            }
 	            //Not equal
 	            else{
-	            	setTimeout(flipDown, 900, card);
-	            	setTimeout(flipDown, 900, selected);
+	            	wrong(card);
+	            	wrong(selected);
+	            	setTimeout(flipDown, 1000, card);
+	            	setTimeout(flipDown, 1000, selected);
 	            }
 	            selected = undefined;
 	            moves++;
