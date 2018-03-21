@@ -40,7 +40,7 @@ body {
 }
 
 h1 {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Mina', sans-serif;
     font-weight: 300;
 }
 
@@ -109,6 +109,11 @@ a:active {
 /*
  * Score Panel
  */
+
+.blur {
+	background-color: rgba(191, 191, 191, 0.2);
+    padding: 2px 13px;
+}
 
 .score-panel {
     text-align: left;
