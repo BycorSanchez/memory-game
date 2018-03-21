@@ -93,8 +93,8 @@
 	            }
 	            //Not equal
 	            else{
-	                flipDown(card);
-	                flipDown(selected);
+	            	setTimeout(flipDown, 900, card);
+	            	setTimeout(flipDown, 900, selected);
 	            }
 	            selected = undefined;
 	            moves++;
@@ -109,7 +109,6 @@
 			console.log("Game finished!");
 		}
 	}
-
 	//Shuffle deck on start
 	init();
 }
