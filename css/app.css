@@ -17,8 +17,9 @@ body {
 }
 
 body {
-    background: #fff url('../img/geometry2.png');
-    font-family: 'Coda', cursive;
+    background: #000 url("../img/ao.gif");
+    font-family: "Coda", cursive;
+    color: white;
 }
 
 .container {
@@ -29,21 +30,21 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 300;
 }
 
 /*
- * Styles for the deck of cards
+ * Deck
  */
 
 .deck {
-    width: 660px;
+	width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: #c1c1c1;
     padding: 32px;
     border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 12px 15px 20px 0 rgba(128, 132, 136, 0.5);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -52,9 +53,9 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
+	height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: linear-gradient(to bottom right, #30333b, #4c4c4c);
     font-size: 0;
     color: #fff;
     border-radius: 8px;
@@ -68,7 +69,7 @@ h1 {
 
 .deck .card.show {
     transform: rotateY(-180deg);
-    background: #02b3e4;
+    background: #1aace2;
     cursor: default;
     font-size: 33px;
 }
@@ -76,12 +77,17 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #5fbf44;
     font-size: 33px;
 }
 
+.deck .card.wrong{
+	cursor: default;
+	background: #e24a4a;
+}
+
 /*
- * Styles for the Score Panel
+ * Score Panel
  */
 
 .score-panel {
@@ -105,4 +111,19 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.stars{
+	color: #f1f100;
+}
+
+/*
+ * Footer
+ */
+
+footer{
+	text-align: center;
+	padding: 10px;
+	color: black;
+	background-color: rgb(255, 255, 255, 0.4);
 }
