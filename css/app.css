@@ -54,7 +54,7 @@ a:active {
  * Deck
  */
 
-.deck {
+.board {
     background: #c1c1c1;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(128, 132, 136, 0.5);
@@ -67,7 +67,7 @@ a:active {
     grid-gap: 30px;
 }
 
-.deck .card {
+.board .card {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
@@ -87,7 +87,7 @@ a:active {
     transition: all 0.5s;
 }
 
-.deck .card.show {
+.board .card.show {
     transform: rotateY(-180deg);
     background: #1599ca;
     cursor: default;
@@ -95,13 +95,13 @@ a:active {
 }
 
 
-.deck .card.match {
+.board .card.match {
     cursor: default;
     background: #5fbf44;
     font-size: 33px;
 }
 
-.deck .card.wrong {
+.board .card.wrong {
 	cursor: default;
 	background-color: #e24a4a;
 }
@@ -154,7 +154,7 @@ footer {
 
 @media screen and (max-width: 750px) {
 
-	.deck {
+	.board {
 	    grid-template-columns: repeat(4, 15vw);
 	    grid-template-rows: repeat(4, 15vw);
 	    grid-gap: 15px;
