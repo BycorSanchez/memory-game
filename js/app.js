@@ -54,16 +54,16 @@
 	}
 
 	function flipDown(card){
-		card.classList.remove("open", "show", "lock", "match");
+		card.classList.remove("show", "match");
 	}
 
 	function flipUp(card){
-		card.classList.add("open", "show", "lock");
+		card.classList.add("show");
 	}
 
-	function isUnlockedCard(element){
+	function isNotFlippedCard(element){
 		const classList = element.classList;
-		return classList.contains("card") && !classList.contains("lock");
+		return classList.contains("card") && !classList.contains("show");
 	}
 
 	//Init game of restart
@@ -75,7 +75,7 @@
 	    const card = event.target;
 
 	    //Is it a card & is it unlocked?
-	    if (isUnlockedCard(card)){
+	    if (isNotFlippedCard(card)){
 
 	        flipUp(card);
 
@@ -109,6 +109,7 @@
 			console.log("Game finished!");
 		}
 	}
+
 	//Shuffle deck on start
 	init();
 }

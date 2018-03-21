@@ -66,15 +66,13 @@ h1 {
     transition: all 0.5s;
 }
 
-.deck .card.open {
+.deck .card.show {
     transform: rotateY(-180deg);
     background: #02b3e4;
     cursor: default;
-}
-
-.deck .card.show {
     font-size: 33px;
 }
+
 
 .deck .card.match {
     cursor: default;
