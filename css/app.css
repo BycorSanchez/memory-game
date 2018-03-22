@@ -162,7 +162,7 @@ footer {
  * Finished
  */
 
-#finish-dialog {
+.finish-dialog {
     position: fixed;
     top: 20%;
     left: 50%;
