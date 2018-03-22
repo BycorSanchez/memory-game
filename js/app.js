@@ -164,10 +164,10 @@
 	function funnyComment(){
 		if (moves < 8) return "Mmm.. I think you're cheating";
 		if (moves === 8) return "You nailed it!!";
-		if (moves < 16) return "I'm really impressed";
+		if (moves < 16) return "Wow, I'm really impressed";
 		if (moves < 24) return "Pretty good";
 		if (moves < 32) return "Nice, try to improve it";
-		return "Perharps you should practice some more";
+		return "Perhaps you should practice some more";
 	}
 
 	/* Timer methods */
