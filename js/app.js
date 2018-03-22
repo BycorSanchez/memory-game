@@ -4,30 +4,26 @@
 	const score = document.querySelector(".score-panel");
 	const starElements = score.querySelectorAll(".score-panel .fa");
 	const clock = score.querySelector(".score-panel .clock");
-	const restart = document.querySelector(".restart");
+	const restarts = document.querySelectorAll(".restart");
 	const board = document.querySelector(".board");
 	const finished = document.querySelector(".finish-dialog");
 
 	let matches, moves, selected, stars, seconds, timer;
 
-	/*
-	 * Init game
-	 */
-
+	// Init game
 	init();
 
-	/*
-	 * Event listeners
-	 */
+	//Register restart events
+	restarts.forEach(restart => restart.addEventListener("click", () => {
+		init();
+		endTimer();
+		finished.classList.add("hidden");
+	}));
 
-	//Restart game
-	restart.addEventListener("click", init);
-
-	//Select card
+	//Register card click event
 	board.addEventListener("click", event => {
 	    const card = event.target;
 
-	    //Is it a card & is not locked?
 	    if (isNotFlippedCard(card)){
 
 	        flipUp(card);
@@ -68,9 +64,6 @@
 		stars = 3;
 		selected = undefined;
 
-		finished.classList.add("hidden");
-
-		endTimer();
 		updateTime();
 		updateScore();
 		shuffle();
@@ -80,7 +73,7 @@
 	function updateScore(){
 		score.querySelector(".moves").textContent = moves + " Moves";
 
-		//Update shown stars
+		//Show stars according to moves
 		switch(moves){
 			case 0:
 				starElements.forEach((element) => element.classList.add("fa-star"));
@@ -115,13 +108,12 @@
 		const cards = board.querySelectorAll(".card");
 		cards.forEach((card, i) => {
 			flipDown(card);
-			//Prevent show value before flip down (transition 0.5s)
+			//Set card value after 0.5 to prevent show it during flip down transition
 			setTimeout(setValue, 500, card, values[i]); 
 		});
 	}
 
 	function checkStart(){
-		//Start time count on first pick
 		if (moves === 0){
 			timer = setTimeout(counter, 1000);
 		}
@@ -130,10 +122,9 @@
 	function checkEnd(){
 		if (matches === 0){
 			finished.querySelector(".clock").textContent = elapsedTime();
-
+			finished.querySelector(".moves").textContent = moves;
+			finished.querySelector(".comment").textContent = funnyComment();
 			finished.classList.remove("hidden");
-
-			console.log("Game finished!");
 			endTimer();
 		}
 	}
@@ -169,14 +160,25 @@
 		return classList.contains("card") && !classList.contains("show");
 	}
 
+	function funnyComment(){
+		if (moves < 8) return "Mmm.. I think you're cheating";
+		if (moves === 8) return "You nailed it!!";
+		if (moves < 16) return "I'm really impressed";
+		if (moves < 24) return "Pretty good";
+		if (moves < 32) return "Nice, try to improve it";
+		return "Perharps you should practice some more";
+	}
+
+	/* Timer methods */
+
 	function endTimer(){
 		clearTimeout(timer);
 	}
 
 	function counter(){
 		seconds++;
-		timer = setTimeout(counter, 1000);
 		updateTime();
+		timer = setTimeout(counter, 1000);
 	}
 
 	function updateTime(){
