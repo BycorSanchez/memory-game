@@ -2,15 +2,13 @@
 {
 	const values = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-camera", "fa-camera"];
 	const board = document.querySelector(".board");
-	const cards = document.querySelectorAll(".board .card");
 	const score = document.querySelector(".moves");
 	const restart = document.querySelector(".restart");
 	const finished = document.querySelector("#finish-dialog")
 
 	let matches, moves, selected;
 
-	function shuffleCards() {
-		//Shuffle values
+	function shuffleValues() {
 	    var index = values.length, temporaryValue, randomIndex;
 	    while (index !== 0) {
 	        randomIndex = Math.floor(Math.random() * index);
@@ -19,11 +17,14 @@
 	        values[index] = values[randomIndex];
 	        values[randomIndex] = temporaryValue;
 	    }
+	}
 
-		//Flip down & set card values
+	function dealCards(){
+		const cards = document.querySelectorAll(".board .card");
 		cards.forEach((card, i) => {
 			flipDown(card);
-			setValue(card, values[i]);
+			//Prevent show value before flip down
+			setTimeout(setValue, 500, card, values[i]); 
 		});
 	}
 
@@ -39,7 +40,8 @@
 
 		finished.classList.add("hidden");
 		updateScore();
-		shuffleCards();
+		shuffleValues();
+		dealCards();
 	}
 
 	function setValue(card, value){
@@ -108,6 +110,7 @@
 	                matches--;
 	                match(card);
 	                match(selected);
+	                checkEnd();
 	            }
 	            //Not equal
 	            else{
@@ -120,7 +123,6 @@
 	            moves++;
 	            updateScore();
 	        }
-	        checkEnd();
 	    }
 	});
 
