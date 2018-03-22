@@ -3,11 +3,12 @@
 	const values = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-camera", "fa-camera"];
 	const score = document.querySelector(".score-panel");
 	const starElements = score.querySelectorAll(".score-panel .fa");
+	const clock = score.querySelector(".score-panel .clock");
 	const restart = document.querySelector(".restart");
 	const board = document.querySelector(".board");
 	const finished = document.querySelector(".finish-dialog");
 
-	let matches, moves, selected, time, stars;
+	let matches, moves, selected, stars, seconds, timer;
 
 	/*
 	 * Init game
@@ -33,6 +34,7 @@
 
 	        //First pick
 	        if (selected === undefined){
+	        	checkStart();
 	            selected = card;
 	        }
 	        //Second pick
@@ -62,19 +64,23 @@
 		//Restart values
 		matches = 8;
 		moves = 0;
-		time = 0;
+		seconds = 0;
 		stars = 3;
 		selected = undefined;
 
 		finished.classList.add("hidden");
+
+		endTimer();
+		updateTime();
 		updateScore();
 		shuffle();
 		dealCards();
 	}
 
 	function updateScore(){
-		score.querySelector(".moves").textContent = moves;
+		score.querySelector(".moves").textContent = moves + " Moves";
 
+		//Update shown stars
 		switch(moves){
 			case 0:
 				starElements.forEach((element) => element.classList.add("fa-star"));
@@ -114,10 +120,21 @@
 		});
 	}
 
+	function checkStart(){
+		//Start time count on first pick
+		if (moves === 0){
+			timer = setTimeout(counter, 1000);
+		}
+	}
+
 	function checkEnd(){
 		if (matches === 0){
+			finished.querySelector(".clock").textContent = elapsedTime();
+
 			finished.classList.remove("hidden");
+
 			console.log("Game finished!");
+			endTimer();
 		}
 	}
 
@@ -150,5 +167,26 @@
 	function isNotFlippedCard(element){
 		const classList = element.classList;
 		return classList.contains("card") && !classList.contains("show");
+	}
+
+	function endTimer(){
+		clearTimeout(timer);
+	}
+
+	function counter(){
+		seconds++;
+		timer = setTimeout(counter, 1000);
+		updateTime();
+	}
+
+	function updateTime(){
+		clock.textContent = elapsedTime();
+	}
+
+	//Format value to 'mm:ss' format
+	function elapsedTime(){
+		const min = Math.floor(seconds / 60);
+		const sec = seconds % 60;
+		return ((min < 10)? "0" + min : min) + ":" + ((sec < 10)? "0" + sec : sec);
 	}
 }

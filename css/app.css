@@ -190,7 +190,7 @@ footer {
 		font-size: 15px;
 	}
 
-	#finish-dialog {
+	.finish-dialog {
 		width: 400px;
     	margin-left: -200px;
 	}
