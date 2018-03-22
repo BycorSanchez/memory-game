@@ -167,7 +167,8 @@
 		if (moves < 16) return "Wow, I'm really impressed";
 		if (moves < 24) return "Pretty good";
 		if (moves < 32) return "Nice, try to improve it";
-		return "Perhaps you should practice some more";
+		if (moves < 42) return "Perhaps you should practice some more";
+		return "...";
 	}
 
 	/* Timer methods */
