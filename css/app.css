@@ -120,7 +120,11 @@ a:active {
 }
 
 .score-panel {
-    text-align: left;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
     min-width: 345px;
     margin-bottom: 10px;
 }
