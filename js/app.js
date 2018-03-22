@@ -83,11 +83,11 @@
 				stars = 2;
 				starElements[stars].classList.remove("fa-star");
 				break;
-			case 34:
+			case 24:
 				stars = 1;
 				starElements[stars].classList.remove("fa-star");
 				break;
-			case 50:
+			case 32:
 				stars = 0;
 				starElements[stars].classList.remove("fa-star");
 				break;
