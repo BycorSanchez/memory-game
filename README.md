@@ -1,6 +1,6 @@
 # Memory Game Project
 
-Memory game project. Available at [https://bycorsanchez.github.io/memory-game/](https://bycorsanchez.github.io/memory-game/)
+Memory game project. Live version: [https://bycorsanchez.github.io/memory-game/](https://bycorsanchez.github.io/memory-game/)
 
 ## How to play
 
@@ -10,13 +10,13 @@ Initially all cards are face down and randomly ordered. On each turn the user tu
 
 ## Features
 
-* Shuffles cards randomly
+* Shuffle cards randomly
 * Count moves
-* A timer show elapsed time
+* Show elapsed time
 * Star rating
-* Congratulations popup
+* Congratulations popup (custom comment according to the score)
 
-#### Star rating
+#### Star rating thresholds
 
 * ★★★: less than 16 moves
 * ★★: less than 24 moves
