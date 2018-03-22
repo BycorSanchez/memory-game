@@ -166,9 +166,8 @@ footer {
     position: fixed;
     top: 20%;
     left: 50%;
-    width: 400px;
-    height: 200px;
-    margin-left: -200px;
+    width: 300px;
+    margin-left: -150px;
     background: #fff;
     color: #000;
     padding: 15px;
@@ -191,5 +190,8 @@ footer {
 		font-size: 15px;
 	}
 
-	/*TODO reducir tamaño de los iconos */
+	#finish-dialog {
+		width: 400px;
+    	margin-left: -200px;
+	}
 }
