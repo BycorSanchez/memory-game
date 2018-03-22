@@ -35,6 +35,8 @@
 	        }
 	        //Second pick
 	        else{
+	        	moves++;
+
 	            //Equal
 	            if (value(card) === value(selected)){
 	                matches--;
@@ -50,7 +52,6 @@
 	            	setTimeout(flipDown, 1000, selected);
 	            }
 	            selected = undefined;
-	            moves++;
 	            updateScore();
 	        }
 	    }
