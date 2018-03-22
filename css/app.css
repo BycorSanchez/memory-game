@@ -22,6 +22,21 @@ body {
     color: #fff;
 }
 
+h1 {
+    font-family: 'Mina', sans-serif;
+    font-weight: 300;
+}
+
+a,
+a:active {
+	color: #103786;
+	outline-color: none;
+}
+
+button {
+    font-family: 'Mina', sans-serif;
+}
+
 .box {
     display: -webkit-flex;
     display: -moz-flex;
@@ -37,17 +52,6 @@ body {
 	-ms-flex-direction: column;
 	-o-flex-direction: column;
 	flex-direction: column;
-}
-
-h1 {
-    font-family: 'Mina', sans-serif;
-    font-weight: 300;
-}
-
-a,
-a:active {
-	color: #103786;
-	outline-color: none;
 }
 
 .hidden {
@@ -163,7 +167,7 @@ footer {
 }
 
 /*
- * Finished
+ * Finish dialog
  */
 
 .finish-dialog {
@@ -175,6 +179,12 @@ footer {
     background: #fff;
     color: #000;
     padding: 15px;
+}
+
+.finish-dialog button{
+	padding: 11px;
+    font-size: 13px;
+    background-color: #e8e8e8;
 }
 
 /*
