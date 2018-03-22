@@ -5,6 +5,7 @@
 	const cards = document.querySelectorAll(".board .card");
 	const score = document.querySelector(".moves");
 	const restart = document.querySelector(".restart");
+	const finished = document.querySelector("#finish-dialog")
 
 	let matches, moves, selected;
 
@@ -36,6 +37,7 @@
 		moves = 0;
 		selected = undefined;
 
+		finished.classList.add("hidden");
 		updateScore();
 		shuffleCards();
 	}
@@ -73,6 +75,7 @@
 
 	function checkEnd(){
 		if (matches === 0){
+			finished.classList.remove("hidden");
 			console.log("Game finished!");
 		}
 	}
