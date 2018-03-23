@@ -1,6 +1,9 @@
 //Prevent variable modification from console
 {
+    //List of possible card values
     const values = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor", "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf", "fa-bicycle", "fa-bicycle", "fa-camera", "fa-camera"];
+
+    //The most accessed DOM elements
     const score = document.querySelector(".score-panel");
     const starElements = score.querySelectorAll(".score-panel .fa");
     const clock = score.querySelector(".score-panel .clock");
@@ -10,55 +13,72 @@
 
     let matches, moves, selected, stars, seconds, timer;
 
-    // Init game
+    //Game starts
     init();
 
-    //Register restart events
+
+    /*
+     * Event listeners
+     */
+
+    /*
+     * On restart:
+     *   - Stop timer (no mor counting)
+     *   - Hide congrats panel
+     *   - Restart the game
+     */
     restarts.forEach(restart => restart.addEventListener("click", () => {
-        init();
         endTimer();
         finished.classList.add("hidden");
+        init();
     }));
 
-    //Register card click event
+    //Board click event
     board.addEventListener("click", event => {
         const card = event.target;
 
+        //Check if the target is a card and has not been selected yet
         if (isNotFlippedCard(card)) {
 
             flipUp(card);
 
-            //First pick
+            //First card pick
             if (selected === undefined) {
                 checkStart();
-                selected = card;
+                selected = card; //Remember first picked card
             }
-            //Second pick
+            //Second card pick
             else {
                 moves++;
 
-                //Equal
+                //If equal, update matches, lock cards and check if it's the last match
                 if (value(card) === value(selected)) {
                     matches--;
                     match(card);
                     match(selected);
                     checkEnd();
                 }
-                //Not equal
+                //If not equal, mark then as wrong and flip both cards down
                 else {
                     wrong(card);
                     wrong(selected);
                     setTimeout(flipDown, 1000, card);
                     setTimeout(flipDown, 1000, selected);
                 }
+                //Clear selected card
                 selected = undefined;
                 updateScore();
             }
         }
     });
 
+    /*
+     * Init game:
+     *   - Restart values
+     *   - Refresh score panel
+     *   - Shuffle & deal cards
+     */
     function init() {
-        //Restart values
         matches = 8;
         moves = 0;
         seconds = 0;
@@ -71,10 +91,11 @@
         dealCards();
     }
 
+    //Update panel score values such as moves and star rating
     function updateScore() {
         score.querySelector(".moves").textContent = moves + " Moves";
 
-        //Show stars according to moves
+        //Update star rating according to moves
         switch (moves) {
             case 0:
                 starElements.forEach((element) => element.classList.add("fa-star"));
@@ -94,6 +115,7 @@
         }
     }
 
+    //Shuffle randomly card values (stored in values array)
     function shuffle() {
         var index = values.length,
             temporaryValue, randomIndex;
@@ -106,6 +128,7 @@
         }
     }
 
+    //Flip down all cards and assign them new values
     function dealCards() {
         const cards = board.querySelectorAll(".card");
         cards.forEach((card, i) => {
@@ -115,54 +138,67 @@
         });
     }
 
+    //Check if the first move has occurred to start timer
     function checkStart() {
         if (moves === 0) {
             timer = setTimeout(counter, 1000);
         }
     }
 
+    /*
+     * Check whether remaining matches are 0 to display final summary
+     * If so, it stops timer & show final score
+     */
     function checkEnd() {
         if (matches === 0) {
+            endTimer();
+            finished.querySelector(".stars").textContent = "★".repeat(stars);
             finished.querySelector(".clock").textContent = elapsedTime();
             finished.querySelector(".moves").textContent = moves;
             finished.querySelector(".comment").textContent = funnyComment();
-            finished.querySelector(".stars").textContent = "★".repeat(stars);
             finished.classList.remove("hidden");
-            endTimer();
         }
     }
 
+    //Set a card as matched
     function match(card) {
         card.classList.add("match");
     }
 
+    //Set a card as wrong to show the user that it doesn't not match
     function wrong(card) {
         card.classList.add("wrong");
     }
 
+    //Flip over a card to show its value
     function flipUp(card) {
         card.classList.add("show");
     }
 
+    //Flip down a card to hide its value
     function flipDown(card) {
         card.classList.remove("show", "match", "wrong");
     }
 
+    //Get the value of a card
     function value(card) {
         return card.firstElementChild.className;
     }
 
+    //Set a specific value to a card
     function setValue(card, value) {
         const content = card.firstElementChild;
         content.className = "";
         content.classList.add("fa", value);
     }
 
+    //Check if passed element is a card and also if it can be turned over (not matched yet)
     function isNotFlippedCard(element) {
         const classList = element.classList;
         return classList.contains("card") && !classList.contains("show");
     }
 
+    //Get a funny comment depending on your moves at the end of the game
     function funnyComment() {
         if (moves < 8) return "Mmm.. I think you're cheating";
         if (moves === 8) return "You nailed it!!";
@@ -173,23 +209,29 @@
         return "...";
     }
 
+
     /* Timer methods */
 
+    //Stop timer count
     function endTimer() {
         clearTimeout(timer);
     }
 
+    //Count every second and update clock timer at score panel
     function counter() {
         seconds++;
         updateTime();
+
+        //Call itself again un 1 second to update it again
         timer = setTimeout(counter, 1000);
     }
 
+    //Show current time at score panel
     function updateTime() {
         clock.textContent = elapsedTime();
     }
 
-    //Format value to 'mm:ss' format
+    //Format time value to 'mm:ss' format
     function elapsedTime() {
         const min = Math.floor(seconds / 60);
         const sec = seconds % 60;
