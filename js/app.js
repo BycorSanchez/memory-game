@@ -21,7 +21,7 @@ init();
 
 /*
  * On restart:
- *   - Stop timer (no mor counting)
+ *   - Stop timer (no more counting)
  *   - Hide congrats panel
  *   - Restart the game
  */
@@ -144,7 +144,7 @@ function checkStart() {
 }
 
 /*
- * Check whether remaining matches are 0 to display final summary
+ * Check whether remaining matches are 0, in order to display final summary
  * If so, it stops timer & show final score
  */
 function checkEnd() {
@@ -220,7 +220,7 @@ function counter() {
     seconds++;
     updateTime();
 
-    //Call itself again un 1 second to update it again
+    //Call itself in 1 second to update time again
     timer = setTimeout(counter, 1000);
 }
 
