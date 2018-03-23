@@ -185,6 +185,7 @@ footer {
     padding: 11px;
     font-size: 13px;
     background-color: #e8e8e8;
+    z-index: 100;
 }
 
 /*
