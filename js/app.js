@@ -126,6 +126,7 @@
             finished.querySelector(".clock").textContent = elapsedTime();
             finished.querySelector(".moves").textContent = moves;
             finished.querySelector(".comment").textContent = funnyComment();
+            finished.querySelector(".stars").textContent = "★".repeat(stars);
             finished.classList.remove("hidden");
             endTimer();
         }
