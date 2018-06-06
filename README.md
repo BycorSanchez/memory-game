@@ -1,8 +1,6 @@
 # Memory Game Project
 
-Memory game project. This is the third required project on the [Udacity Front End Nanodegree](https://eu.udacity.com/course/front-end-web-developer-nanodegree--nd001).
-
-Live version: [https://bycorsanchez.github.io/memory-game/](https://bycorsanchez.github.io/memory-game/)
+This is the third required project on the [Udacity Front End Nanodegree](https://eu.udacity.com/course/front-end-web-developer-nanodegree--nd001).
 
 ## How to play
 
@@ -24,3 +22,7 @@ Initially all cards are face down and randomly ordered. On each turn the user tu
 * ★★: less than 24 moves
 * ★: less than 32 moves
 * none: more than 31 moves
+
+## Live version
+
+[https://bycorsanchez.github.io/memory-game/](https://bycorsanchez.github.io/memory-game/)
