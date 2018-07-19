@@ -35,7 +35,7 @@ restarts.forEach(restart => restart.addEventListener("click", () => {
 board.addEventListener("click", event => {
     const card = event.target;
 
-    //Check if the target is a card and has not been selected yet
+    //Check if the target is a card and it has not been selected yet
     if (isNotFlippedCard(card)) {
 
         flipUp(card);
@@ -115,7 +115,7 @@ function updateScore() {
 
 //Shuffle randomly card values (stored in values array)
 function shuffle() {
-    var index = values.length,
+    let index = values.length,
         temporaryValue, randomIndex;
     while (index !== 0) {
         randomIndex = Math.floor(Math.random() * index);
