@@ -26,3 +26,6 @@ Initially all cards are face down and randomly ordered. On each turn the user tu
 ## Live version
 
 [https://bycorsanchez.github.io/memory-game/](https://bycorsanchez.github.io/memory-game/)
+
+----
+![Memory game preview](img/web.gif)
